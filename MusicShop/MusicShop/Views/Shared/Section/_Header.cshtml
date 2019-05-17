@@ -1,0 +1,68 @@
+﻿<div class="header">
+    <div class="header-autorization-b">
+        <div class="container-content">
+            <div class="autorization-list-b">
+                <ul class="ul-autorization-list">
+                    <li><a href="#">Вход</a></li>
+                    <li>|</li>
+                    <li><a href="#">Регистрация</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-nav-menu">
+        <div class="content-menu-header-fon">
+            <div class="container-content">
+                <div class="header-nav-menu-cont">
+                    <div class="header-logo-brend">
+                        <a href="/">
+                            <img class="header-logo-img" src="~/images/muzmag-logo.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="header-search-b">
+                        <form action="/Home/Search" method="get">
+                            <div class="input-serch-b">
+                                <input class="input-header-search" name="search" id="search" placeholder="Поиск..." type="text" />
+                                <button class="search-btn" type="submit"></button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="header-bascet-b">
+                    
+                        <a href="~/Basket/Index">
+                            <div class="basket-b">
+                                @if (Session["cart_quantyty"] != null)
+                                {
+                                    <span class="cart_quantyty">@Session["cart_quantyty"]</span>
+                                }
+                                else
+                                {
+                                    <span class="cart_quantyty">0</span>
+                                }
+                            </div>
+                            <p href="#">Корзина<br /><span><span class="cart_quantyty">@Session["cart_quantyty"]</span> товаров</span></p>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-nav-menu">
+        <div class="content-menu-header-fon">
+            <div class="container-content">
+                <div class="menu">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="~/Home/About">О компании</a></li>
+                        <li><a href="~/Home/Contact">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

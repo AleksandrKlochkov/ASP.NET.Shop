@@ -1,0 +1,83 @@
+﻿@*@using MusicShop.Models*@
+@*@model IEnumerable<MusicShop.Models.Product>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--font-->
+    @Styles.Render("~/Fonts/fontssite")
+    <!--css--->
+    @Styles.Render("~/Content/css")
+    <!--jquery-->
+    @Scripts.Render("~/bundles/jquery")
+    <!--test-->
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <title>@ViewBag.Title – Музыкальный магазин</title>
+    <link rel="shortcut icon" href="../images/muzmag-logo.png" type="image/x-icon">
+</head>
+<body>
+
+
+
+
+    <div class="main-content-wrapper">
+        <div class="main-content">
+
+            @RenderPage("./Section/_Header.cshtml")
+
+            <div class="content-wrapper">
+                <div class="content-wrapper-fon">
+                    <div class="container-content">
+                        <div class="osn-wrapper-content">
+                            <div class="contentwrapper-main">
+                                <div class="content-main">
+                                    <div class="conteiner-cont-main">
+
+                                        <div class="pagination-links-tags-b">
+                                            <!--хлебные крошки-->
+                                            <div class="pagination-links-tags-cont">
+                                                <ul class="ul-pagination-links-tags">
+                                                    <li><a href="/">Главная</a></li>
+                                                    <li><i class="fa fa-chevron-right icon"></i></li>
+                                                    <li><a href="#" onclick="return false;">@ViewBag.Title</a></li>
+                                                    <li><i class="fa fa-chevron-right icon"></i></li>
+                                                    @*@if (!String.IsNullOrEmpty(ViewBag.Tab))
+                                                    {
+                                                        <li><a class="activ-pagination-links-tags" href="#" onclick="return false;">@ViewBag.Tab</a></li>
+                                                        <li><i class="fa fa-chevron-right icon"></i></li>
+                                                    }*@
+                                                </ul>
+                                            </div>
+                                        </div><!--хлебные крошки-->
+
+                                        @RenderBody()
+
+                                    </div>
+                                </div>
+                            </div>
+                            @*@RenderPage("./Section/_LeftSideBar.cshtml", new { Subcategory = Model })*@
+                            @*@RenderPage("./Section/_LeftSideBar.cshtml",new { Products = ViewBag.Products} )*@
+                            @RenderPage("./Section/_LeftSideBar.cshtml")
+
+                            @*@Html.Partial("_LeftBarPartial")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--main-content-->
+    </div><!---main-content-wrapper-->
+
+    @RenderPage("./Section/_Footer.cshtml")
+
+    <!--js-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/pluginsjs")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

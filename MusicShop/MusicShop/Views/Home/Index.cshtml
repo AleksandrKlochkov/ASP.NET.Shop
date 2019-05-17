@@ -1,0 +1,63 @@
+﻿@using MusicShop.Models
+
+
+@{
+    ViewBag.Title = "Музыкальный магазин";
+}
+
+
+<div class="conent-product-b">
+    <ul class="ul-content-product-table">
+        @foreach (Good g in ViewBag.Goods)
+        {
+            if (g.quantity > 0)
+            {
+            <li>
+                <div>
+
+
+                    <a href="~/Product/Index/?productId=@g.goods_id">
+                        <div class="product-pictures">
+                            @if (String.IsNullOrEmpty(g.img))
+                            {
+                                <img src="~/Content/goods_img/noimg.jpg" alt="" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/goods_img/@g.img" alt="" />
+                            }
+                        </div>
+
+                        <div class="product-category-names">
+                            <h3>@g.name</h3>
+                        </div>
+
+                        <div class="produc-price-sale-b">
+                            <div class="product-price-b">
+                                <p class="price-p">@Math.Round(g.price, 2) руб.</p>
+                            </div>
+                        </div>
+                    </a>
+                    @if (g.hits.Trim() == "true")
+                    {
+                        <div class="product-nav-hitsnewdiscounts-b">
+                            <ul class="ul-product-nav-hitsnewdiscounts">
+
+                                <li>
+                                    <div><img src="~/images/hits.png" alt=""></div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    }
+
+                    <div class="product-pay-default-btn-b">
+                        <a class="product-btn-default-pay add-to-cart"  data-goodid="@g.goods_id">В корзину</a>
+                    </div>
+
+                </div>
+            </li>
+            }
+        }
+    </ul>
+ </div>

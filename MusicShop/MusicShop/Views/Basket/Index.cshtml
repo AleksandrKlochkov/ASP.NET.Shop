@@ -1,0 +1,117 @@
+﻿@*@using System.Collections.Generic*@
+@model System.Collections.Generic.List<System.Object>
+@*@model System.Collections.Generic.List<MusicShop.Models.Good>*@
+@*@model List<MusicShop.Models.Good>*@
+@*@model ListSystem.Object>*@
+@using MusicShop.Models
+@*@model System.Web.Mvc.ViewPage<IEnumerable<MusicShop.Models.Good>>*@
+@*@model IEnumerable<MusicShop.Models.Good>*@
+@{
+
+    ViewBag.Title = "Корзина";
+
+}
+
+@*@if (Session["cart"] != null)
+{
+    foreach (var g in Session["cart"] as System.Collections.Generic.Dictionary<int, int>)
+    {
+        <div> @g.Key + @g.Value </div>
+    }
+}*@
+
+
+
+
+
+    
+        <div class="product-basket-content">
+
+            <div class="shop-page-title">
+                <h1>@ViewBag.Title</h1>
+            </div>
+            @if (Session["cart"] != null)
+            {
+                <div class="product-basket-tables-cont">
+                    <form action="~/Basket/Order/" method="get">
+                        <table class="shop-table-pages">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Наименование</th>
+                                    <th>Цена</th>
+                                    <th>Количество</th>
+                                    <th>Сумма</th>
+                                    <th>Удалить</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Good g in (List<Good>)ViewBag.ListCart)
+                                {
+
+                                <tr>
+                                    <td>
+                                        <div class="img-table"><img class="img-table-bascet" src="~/Content/goods_img/@g.img" alt=""></div>
+
+                                    </td>
+                                    <td>
+                                        <div class="product-category-names-line">
+                                            <h3>@g.name</h3>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h3 class="td-price">@Math.Round(g.price, 2) руб.</h3>
+                                    </td>
+                                    @foreach (var qty in Session["cart"] as System.Collections.Generic.Dictionary<int, int>)
+                                    {
+
+
+
+                                        if (qty.Key == g.goods_id)
+                                        {
+                                            <td>
+                                                <ul class="ul-count-table-basket">
+
+                                                    <li><input class="activ-inp-count-table-basket" type="text" value="@qty.Value" disabled></li>
+
+                                                </ul>
+
+                                            </td>
+
+
+                                            <td>
+                                                <h3 class="td-price">@Math.Round(qty.Value * g.price, 2) руб.</h3>
+                                            </td>
+                                        }
+                                    }
+                                    <td>
+                                        <a class="delete-product-bascet dell-to-cart" data-goodid="@g.goods_id"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+
+                        </table>
+
+                        <div class="total-for-payment-b">
+                            <ul class="ul-total-for-payment-b">
+                                <li>ИТОГО К ОПЛАТЕ</li>
+
+
+                                <li>
+                                    <span>@Math.Round(Convert.ToDecimal(@Session["countPrice"]), 2) руб</span>
+                                </li>
+                            </ul>
+
+                            <div class="btn-plact-order-b">
+                                <a href="~/Basket/Order" class="btn-href-default-site" type="submit">Оформить заказ</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+            else {
+                <h2>Вы еще не выбрали ни одного товара для выбора товара <a href="/">вернитесь на страницу товаров</a></h2>
+            }
+        
+        </div>

@@ -1,0 +1,87 @@
+﻿@*@using MusicShop.Models*@
+@*@model List<MusicShop.Models.Product>*@
+
+<div class="left-bar-main">
+        <div class="left-bar-cont">
+
+            <div class="catalog-leftbar-b">
+                <ul class="ul-catalog-leftbar">
+                    <li>
+                        <div><i class="fa fa-bars icon"></i> каталог</div>
+                        <ul>
+                            @*@foreach (var p in Model)
+                            {
+                                <li>
+                                    <!--осн ур-->
+                                    <a href="#"> @p.product_name</a>
+                                </li> <!--осн ур-->
+                            }*@
+                                    <li>
+                                        <!--осн ур-->
+                                        <a href="/Home/Index/1"> Гитары</a>
+                                    </li> <!--осн ур-->
+                                    <li>
+                                        <!--осн ур-->
+                                        <a href="/Home/Index/2"> Аккардионы и баяны</a>
+                                    </li> <!--осн ур-->
+                                    <li>
+                                        <!--осн ур-->
+                                        <a href="/Home/Index/3"> Ударные инструменты</a>
+                                    </li> <!--осн ур-->
+                                    <li>
+                                        <!--осн ур-->
+                                        <a href="/Home/Index/4"> Клавишные инструменты</a>
+                                    </li> <!--осн ур-->
+                                    <li>
+                                        <!--осн ур-->
+                                        <a href="/Home/Index/5"> Звукавое оборудование</a>
+                                    </li> <!--осн ур-->
+                                    <li>
+                                        <!--осн ур-->
+                                        <a href="/Home/Index/6"> Духовые инструменты</a>
+                                    </li> <!--осн ур-->
+                                    <li>
+                                        <!--осн ур-->
+                                        <a href="/Home/Index/7"> Аксессуары</a>
+                                    </li> <!--осн ур-->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            @if (ViewBag.Title == "Музыкальный магазин")
+            {
+                <div class="filter-bar-b">
+                    <div class="catalog-bar-b">
+                        <form href="/Home/Index/" method="get" class="filter">
+                            <ul class="ul-filter-bar">
+                                <li>
+                                    <a href="#"><i class="fa fa-bars icon"></i>фильтры</a>
+                                    <ul hidden>
+                                        <li>
+                                            <a href="#"><i class="fa fa-filter" aria-hidden="true"></i>По цене, руб</a>
+                                            <ul>
+
+                                                <li>
+                                                    <select name="filter" class="left_select">
+                                                        <option value="priceup" selected="selected">Цена по возрастанию</option>
+                                                        <option value="pricedown">Цена по убыванию</option>
+                                                    </select>
+                                                </li>
+
+                                                <li>
+                                                    <div class="default-btn-filter-b"><button class="button-filter-default" type="submit">Отфильтровать</button></div>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>

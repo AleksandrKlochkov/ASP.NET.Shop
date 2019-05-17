@@ -1,0 +1,99 @@
+﻿@*@model List<MusicShop.Models.Good>*@
+@*@model  System.Collections.Generic.IEnumerable<MusicShop.Models.Good>*@
+@*@model MusicShop.Models.Good*@
+@using MusicShop.Models
+
+
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="product-page-content">
+    <div class="product-page-text-cont-b">
+        @if (ViewBag.VisibleGood)
+        {
+            foreach (Good g in ViewBag.Good)
+            {
+                <div class="product-page-b">
+
+
+                    <div class="img-picture-product-line">
+                        <a href="#">
+                            <div class="product-pictures-line">
+                                @if (String.IsNullOrEmpty(g.img))
+                                {
+                                    <img src="~/Content/goods_img/noimg.jpg" alt="" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/goods_img/@g.img" alt="" />
+                                }
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="text-product-line">
+                        <div class="product-category-names-line">
+                            <h3>@g.name</h3>
+                        </div>
+
+                        <div class="product-text-short-description">
+                            <p>@g.anons</p>
+                        </div>
+                        @if (g.quantity > 0)
+                        {
+                            <p class="product-availability-information-line"> В наличии</p>
+                        }
+                        else
+                        {
+                            <p style="color:red;" class="product-availability-information-line"> Нет на складе</p>
+                        }
+
+                    </div>
+
+                    <div class="text-product-line-two">
+
+                        <div class="produc-price-sale-b-line">
+                            <div class="product-price-b-line">
+                                <p class="price-p-line">@Math.Round(g.price, 2) руб.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    @if (g.quantity > 0)
+                    {
+                    <div class="product-pay-default-btn-b-line">
+                        <a class="product-btn-default-pay add-to-cart" data-goodid="@g.goods_id">В корзину</a> @*href="~/Basket/AddToCart/?goodId=@g.goods_id"*@
+                    </div>
+                    }
+
+
+
+                    @if (g.hits.Trim() == "true")
+                    {
+                        <div class="product-nav-hitsnewdiscounts-b-line">
+                            <ul class="ul-product-nav-hitsnewdiscounts-line">
+
+                                <li>
+                                    <div><img src="~/images/hits.png" alt=""></div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    }
+
+                </div>
+            }
+        } else {
+
+            <h2>Не выбран существующий товар. Вернитесь к списку товаров и выберите нужный вам товар для просмотра <a href="/">Вернуться к списку товаров</a></h2>
+
+        }
+    
+    </div>
+</div>

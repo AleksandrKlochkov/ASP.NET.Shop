@@ -70,11 +70,13 @@
                                         if (qty.Key == g.goods_id)
                                         {
                                             <td>
+                                           
                                                 <ul class="ul-count-table-basket">
-
-                                                    <li><input class="activ-inp-count-table-basket" type="text" value="@qty.Value" disabled></li>
-
+                                                    <li><a class="activ-count-table-basket dell-to-cart-prod" data-goodid="@g.goods_id">-</a></li> @*// href="~/Basket/AddToCartUnCount/?goodId=@g.goods_id"*@
+                                                    <li><input class="activ-inp-count-table-basket" type="text" value="@qty.Value" /></li>
+                                                    <li><a class="activ-count-table-basket add-to-cart-prod" data-goodid="@g.goods_id">+</a></li> @*href="~/Basket/AddToCartCount/?goodId=@g.goods_id"*@
                                                 </ul>
+
 
                                             </td>
 

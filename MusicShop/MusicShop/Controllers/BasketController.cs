@@ -132,6 +132,156 @@ namespace MusicShop.Controllers
         }
 
         [HttpGet]
+        public int AddToCartCount(int? goodId)
+        {
+
+
+            //Session["elements"] = element;
+            if (goodId != null)
+            {
+                Dictionary<int, int> cart = Session["cart"] as Dictionary<int, int>;
+                if (cart == null) cart = new Dictionary<int, int>();
+                int g_id = Convert.ToInt32(goodId);
+
+                if (Session["cart"] != null)
+                {
+                    //если товар существует в корзине
+                    try
+                    {
+
+                        cart[g_id] += 1;
+                        Session["cart"] = cart;
+
+
+                    }
+                    catch
+                    {
+                        g_id = Convert.ToInt32(goodId);
+                        cart.Add(g_id, 1);
+                        Session["cart"] = cart;
+                    }
+
+                }
+                else
+                {
+                    //еслии в массиве cart нет товара
+                    cart[g_id] = 1;
+
+                    Session["cart"] = cart;
+                }
+            }
+            var countList = new List<int>();
+
+            int count = 0;
+
+
+
+            if (Session["cart"] != null)
+            {
+
+                foreach (var g in Session["cart"] as System.Collections.Generic.Dictionary<int, int>)
+                {
+                    // < div > @g.Key + @g.Value </ div >
+
+                    countList.Add(g.Value);
+                }
+
+
+
+                foreach (var c in countList)
+                {
+                    count += c;
+                }
+            }
+
+
+            Session["cart_quantyty"] = count;
+
+            
+
+            return count;
+        }
+
+        [HttpGet]
+        public int AddToCartUnCount(int? goodId)
+        {
+
+
+            //Session["elements"] = element;
+            if (goodId != null)
+            {
+                Dictionary<int, int> cart = Session["cart"] as Dictionary<int, int>;
+                if (cart == null) cart = new Dictionary<int, int>();
+                int g_id = Convert.ToInt32(goodId);
+
+                if (Session["cart"] != null)
+                {
+                    //если товар существует в корзине
+                    try
+                    {
+
+                        
+                        if (cart[g_id] == 1)
+                        {
+                            cart.Remove(g_id);
+
+                            Session["cart"] = cart;
+                            if (cart.Count <= 0)
+                            {
+                                Session["cart"] = null;
+                            }
+                        }
+                        else {
+                            cart[g_id] -= 1;
+                            Session["cart"] = cart;
+                        }
+
+
+                    }
+                    catch
+                    {
+                        g_id = Convert.ToInt32(goodId);
+                        cart.Add(g_id, 0);
+                        Session["cart"] = cart;
+                    }
+
+                }
+               
+
+            }
+            var countList = new List<int>();
+
+            int count = 0;
+
+
+
+            if (Session["cart"] != null)
+            {
+
+                foreach (var g in Session["cart"] as System.Collections.Generic.Dictionary<int, int>)
+                {
+                    // < div > @g.Key + @g.Value </ div >
+
+                    countList.Add(g.Value);
+                }
+
+
+
+                foreach (var c in countList)
+                {
+                    count += c;
+                }
+            }
+
+
+            Session["cart_quantyty"] = count;
+
+
+
+            return count;
+        }
+
+        [HttpGet]
         public int DellToProduct(int? goodId)
         {
           var count = 0;
